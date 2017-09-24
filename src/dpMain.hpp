@@ -1,7 +1,9 @@
 #ifndef __DBMAIN_HPP__
 #define __DBMAIN_HPP__
+
+#include "dpWindow.hpp"
+#include "dpTypeDefs.hpp"
 #include <memory>
-#include "platform/dpWindow.hpp"
 
 namespace dp {
 
@@ -10,11 +12,13 @@ namespace dp {
 			Main();
 			~Main();
 			bool init();
+			void uninit();
+
 			void run();
-			static void shutdown();
+
 		private:
-			Window* m_window;
-			static bool m_running;
+			std::unique_ptr<Window> m_window;
+			bool m_running;
 	};
 }
 

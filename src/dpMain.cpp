@@ -1,54 +1,77 @@
-//Using SDL and standard IO
-#include <SDL.h>
-#include <stdio.h>
-#include <memory>
-
+#include "dpAppDefs.hpp"
 #include "dpMain.hpp"
-#include "platform/dpWindow.hpp"
+#include "dpWindow.hpp"
+#include "dpDebugLog.hpp"
+#include "dpFileDialog.hpp"
 
-//Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+#include <SDL.h>
 
 namespace dp {
-	SDL_Window* sdlWnd;
 
-	bool Main::m_running = true;
-
-	Main::Main() {}
+	Main::Main() : m_running(true) {}
 	
 	Main::~Main() {}
 
 	bool Main::init() {
-		m_window = new Window();
-		if (!m_window->create()) {
+
+		if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+			LOG("SDL could not be initialized!");
 			m_running = false;
-			
 		}
-		m_window->show();
-
-		SDL_InitSubSystem(SDL_INIT_VIDEO);
-		sdlWnd = SDL_CreateWindowFrom(m_window->getHandle());
-		SDL_SetWindowTitle(sdlWnd, "SDL Window - Set by SDL");
-		
-		//SDL_UpdateWindowSurface(sdlWnd);
-
-
+		else {
+			m_window = std::unique_ptr<Window>(new Window());
+			if (!m_window->init()) {
+				m_running = false;
+			}
+		}
 		return m_running;
 	}
 
-	void Main::run() {
-		while (m_running) {
-			m_window->update();
-
-			SDL_Surface* s = SDL_GetWindowSurface(sdlWnd);
-			SDL_FillRect(s, &s->clip_rect, 0xffff00ff);
-			SDL_UpdateWindowSurface(sdlWnd);
-		}
+	void Main::uninit() {
+		m_window->uninit();
+		SDL_Quit();
 	}
 
-	void Main::shutdown() {
-		m_running = false;
+	void Main::run() {
+
+		SDL_Renderer* renderer = m_window->getRenderer();
+		SDL_Event e;
+
+		while (m_running) {
+
+			//Handle events on queue
+			while (SDL_PollEvent(&e) != 0) {
+				if (e.type == SDL_QUIT) {
+					m_running = false;
+				}
+				if (e.type == SDL_KEYDOWN)
+				{
+					SDL_Keycode keyPressed = e.key.keysym.sym;
+
+					switch (keyPressed)
+					{
+						case SDLK_ESCAPE:
+							m_running = false;
+							break;
+						case SDLK_o:
+							FileDialog d;
+							d.test();
+							break;
+					}
+				}
+				//Handle window events
+				m_window->handleEvent(e);
+			}
+
+			//Only draw when not minimized
+			if (!m_window->isMinimized()) {
+				//Clear screen
+				SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0xFF, 0xFF);
+				SDL_RenderClear(renderer);
+				//Update screen
+				SDL_RenderPresent(renderer);
+			}
+		}
 	}
 }
 
@@ -57,49 +80,6 @@ int main(int argc, char* argv[])
 	dp::Main dp;
 	dp.init();
 	dp.run();
-
-	/*
-	//The window we'll be rendering to
-	SDL_Window* window = NULL;
-
-	
-	//The surface contained by the window
-	SDL_Surface* screenSurface = NULL;
-
-	//Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
-		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-	}
-	else
-	{
-		//Create window
-		window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-		if (window == NULL)
-		{
-			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-		}
-		else
-		{
-			//Get window surface
-			screenSurface = SDL_GetWindowSurface(window);
-
-			//Fill the surface white
-			SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
-
-			//Update the surface
-			SDL_UpdateWindowSurface(window);
-
-			//Wait two seconds
-			SDL_Delay(2000);
-		}
-	}
-	//Destroy window
-	SDL_DestroyWindow(window);
-
-	//Quit SDL subsystems
-	SDL_Quit();
-	*/
-
+	dp.uninit();
 	return 0;
 }

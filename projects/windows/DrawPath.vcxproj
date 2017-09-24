@@ -19,13 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\libs\tinyfiledialogs\tinyfiledialogs.c" />
+    <ClCompile Include="..\..\src\dpFileDialog.cpp" />
     <ClCompile Include="..\..\src\dpMain.cpp" />
-    <ClCompile Include="..\..\src\platform\win32\dpWindow.cpp" />
+    <ClCompile Include="..\..\src\dpWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\libs\tinyfiledialogs\tinyfiledialogs.h" />
     <ClInclude Include="..\..\src\dpAppDefs.hpp" />
+    <ClInclude Include="..\..\src\dpDebugLog.hpp" />
+    <ClInclude Include="..\..\src\dpFileDialog.hpp" />
     <ClInclude Include="..\..\src\dpMain.hpp" />
-    <ClInclude Include="..\..\src\platform\dpWindow.hpp" />
+    <ClInclude Include="..\..\src\dpTypeDefs.hpp" />
+    <ClInclude Include="..\..\src\dpWindow.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -87,7 +93,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../../libs/sdl2/include;../../src;../../src/platform;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../libs/sdl2/include;../../src;../../../libs/tinyfiledialogs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>../../../libs/sdl2/lib/x86/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -115,7 +121,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../../libs/sdl2/include;../../src;../../src/platform;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../libs/sdl2/include;../../src;../../../libs/tinyfiledialogs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

@@ -13,29 +13,47 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\platform">
-      <UniqueIdentifier>{a11b8b46-330c-4582-a929-5b03b3ea7b4c}</UniqueIdentifier>
+    <Filter Include="Libs">
+      <UniqueIdentifier>{68e8df10-662b-4f24-a1a1-143621818dd4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\platform\win32">
-      <UniqueIdentifier>{357a49ba-b4e0-438c-b0c5-ee073b9b8446}</UniqueIdentifier>
+    <Filter Include="Libs\tinyfiledialogs">
+      <UniqueIdentifier>{246db4c1-8817-4a2d-b458-33932b61b5d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\platform\win32\dpWindow.cpp">
-      <Filter>Source Files\platform\win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\dpMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\dpWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\libs\tinyfiledialogs\tinyfiledialogs.c">
+      <Filter>Libs\tinyfiledialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dpFileDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\platform\dpWindow.hpp">
-      <Filter>Source Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\dpAppDefs.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\dpDebugLog.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\dpMain.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dpWindow.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dpTypeDefs.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\libs\tinyfiledialogs\tinyfiledialogs.h">
+      <Filter>Libs\tinyfiledialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dpFileDialog.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
