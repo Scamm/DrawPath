@@ -4,14 +4,17 @@
 #include "dpTypeDefs.hpp"
 #include <string>
 
+#include <vector>
+#include <string>
+
 namespace dp {
 
 	class FileDialog {
 		public:
 			FileDialog();
 			~FileDialog();
-			void open();
-			void save();
+			std::string open();
+			bool save(const std::vector<char>& data);
 
 			i8 test();
 

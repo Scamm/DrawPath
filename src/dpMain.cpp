@@ -19,7 +19,7 @@ namespace dp {
 			m_running = false;
 		}
 		else {
-			m_window = std::unique_ptr<Window>(new Window());
+			m_window = std::make_unique<Window>();
 			if (!m_window->init()) {
 				m_running = false;
 			}
@@ -53,10 +53,15 @@ namespace dp {
 						case SDLK_ESCAPE:
 							m_running = false;
 							break;
-						case SDLK_o:
+						case SDLK_o: {
 							FileDialog d;
-							d.test();
+							std::string imagepath = d.open();
+							if (!imagepath.empty()) {
+								//DO STUFF
+								LOG("read file into SDL_surface");
+							}
 							break;
+						}
 					}
 				}
 				//Handle window events

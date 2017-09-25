@@ -1,17 +1,70 @@
 #include "dpFileDialog.hpp"
-
+#include "dpDebugLog.hpp"
 #include "tinyfiledialogs.h"
+#include <fstream>
+
+//Get rid of "fopen is unsafe" error in MSVC
+#ifdef _MSC_VER
+#pragma warning(default:4996)
+#endif
 
 namespace dp {
 
 	FileDialog::FileDialog() {}
 	FileDialog::~FileDialog() {}
 	
-	void FileDialog::open() {
-	
+	std::string FileDialog::open() {
+		std::string imagepath;
+
+		const char* filepath;
+		const char* filterPatterns[2] = { "*.png", "*.jpg" };
+
+		filepath = tinyfd_openFileDialog(
+			"Read image file",
+			"",
+			2,
+			filterPatterns,
+			nullptr,
+			0);
+
+		if (!filepath) {
+			tinyfd_messageBox(
+				"Error",
+				"File does not exist",
+				"ok",
+				"error",
+				1);	
+		}
+
+		imagepath = filepath;
+		return imagepath;
+		/*
+		std::ifstream fin(filepath, std::ifstream::binary);
+
+		if (!fin.is_open()) {
+			tinyfd_messageBox(
+				"Error",
+				"File read error",
+				"ok",
+				"error",
+				1);
+			return false;
+		}
+
+		fin.seekg(0, fin.end);
+		u64 len = fin.tellg();
+		fin.seekg(0, fin.beg);
+
+		data.resize(len);
+		fin.read(&data[0], len);
+
+		LOG("Data size: %d", data.size());
+		*/	
 	}
 	
-	void FileDialog::save() {}
+	bool FileDialog::save(const std::vector<char>& data) {
+		return false;
+	}
 
 	i8 FileDialog::test() {
 

@@ -19,6 +19,12 @@
     <Filter Include="Libs\tinyfiledialogs">
       <UniqueIdentifier>{246db4c1-8817-4a2d-b458-33932b61b5d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libs\stb_image">
+      <UniqueIdentifier>{332ce361-fa4e-4759-a45a-7194205a28f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libs\SDL_stbimage">
+      <UniqueIdentifier>{a6aabbb0-0b96-4254-9c4f-49ba2d3c0863}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\dpMain.cpp">
@@ -27,11 +33,11 @@
     <ClCompile Include="..\..\src\dpWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\libs\tinyfiledialogs\tinyfiledialogs.c">
-      <Filter>Libs\tinyfiledialogs</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\dpFileDialog.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libs\tinyfiledialogs\tinyfiledialogs.c">
+      <Filter>Libs\tinyfiledialogs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,11 +56,17 @@
     <ClInclude Include="..\..\src\dpTypeDefs.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\libs\tinyfiledialogs\tinyfiledialogs.h">
-      <Filter>Libs\tinyfiledialogs</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\dpFileDialog.hpp">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\tinyfiledialogs\tinyfiledialogs.h">
+      <Filter>Libs\tinyfiledialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\stb_image\stb_image.h">
+      <Filter>Libs\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libs\SDL_stbimage\SDL_stbimage.h">
+      <Filter>Libs\SDL_stbimage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

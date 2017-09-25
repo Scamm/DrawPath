@@ -46,8 +46,7 @@ namespace dp {
 
 	void Window::handleEvent(SDL_Event& e) {
 		//Window event occured
-		if (e.type == SDL_WINDOWEVENT)
-		{
+		if (e.type == SDL_WINDOWEVENT) {
 			//Caption update flag
 			bool updateCaption = false;
 				switch (e.window.event) {
