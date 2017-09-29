@@ -2,7 +2,6 @@
 #define __DP_FILEDIALOG_HPP__
 
 #include "dpTypeDefs.hpp"
-#include <string>
 
 #include <vector>
 #include <string>

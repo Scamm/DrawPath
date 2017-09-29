@@ -3,7 +3,9 @@
 #include "dpWindow.hpp"
 #include "dpDebugLog.hpp"
 #include "dpFileDialog.hpp"
+#include "dpImageLoader.hpp"
 
+#include <string>
 #include <SDL.h>
 
 namespace dp {
@@ -57,8 +59,11 @@ namespace dp {
 							FileDialog d;
 							std::string imagepath = d.open();
 							if (!imagepath.empty()) {
+								ImageLoader imageLoader(imagepath);
 								//DO STUFF
 								LOG("read file into SDL_surface");
+								SDL_Surface* surface = imageLoader.loadImage();
+								LOG("SDL_surface loaded!");
 							}
 							break;
 						}

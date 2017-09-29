@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\libs\tinyfiledialogs\tinyfiledialogs.c" />
     <ClCompile Include="..\..\src\dpFileDialog.cpp" />
+    <ClCompile Include="..\..\src\dpImageLoader.cpp" />
     <ClCompile Include="..\..\src\dpMain.cpp" />
     <ClCompile Include="..\..\src\dpWindow.cpp" />
   </ItemGroup>
@@ -31,6 +32,7 @@
     <ClInclude Include="..\..\src\dpAppDefs.hpp" />
     <ClInclude Include="..\..\src\dpDebugLog.hpp" />
     <ClInclude Include="..\..\src\dpFileDialog.hpp" />
+    <ClInclude Include="..\..\src\dpImageLoader.hpp" />
     <ClInclude Include="..\..\src\dpMain.hpp" />
     <ClInclude Include="..\..\src\dpTypeDefs.hpp" />
     <ClInclude Include="..\..\src\dpWindow.hpp" />
